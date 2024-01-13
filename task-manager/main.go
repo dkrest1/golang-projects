@@ -1,7 +1,36 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/dkrest1/task-manager/configs"
+	"github.com/dkrest1/task-manager/routes"
+	"github.com/joho/godotenv"
+)
 
 func main() {
-	fmt.Println("Hello World!")
+
+	// Load env
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("No .env  file found!")
+	}
+
+	// init DB
+	configs.InitDB()
+
+
+	port, exist := os.LookupEnv("PORT")
+
+	if !exist {
+		log.Fatal("PORT not set in env")
+	}
+
+	err := http.ListenAndServe(":"+port, routes.Routes())
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }
