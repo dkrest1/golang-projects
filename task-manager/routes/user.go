@@ -7,7 +7,7 @@ import (
 
 var UserRoute *mux.Router
 
-func userRouter() {
+func userRouter( ) {
 
 	route := mux.NewRouter()
 

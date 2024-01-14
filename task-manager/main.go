@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/dkrest1/task-manager/configs"
-	"github.com/dkrest1/task-manager/routes"
+	// "github.com/dkrest1/task-manager/routes"
 	"github.com/joho/godotenv"
 )
 
@@ -27,7 +27,7 @@ func main() {
 		log.Fatal("PORT not set in env")
 	}
 
-	err := http.ListenAndServe(":"+port, routes.Routes())
+	err := http.ListenAndServe(":"+port, nil)
 
 	if err != nil {
 		log.Fatal(err)
