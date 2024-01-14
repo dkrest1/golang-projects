@@ -1,26 +1,37 @@
 package controllers
 
-import "net/http"
+import (
 
-func CreateUser(w http.ResponseWriter, r *http.Request) {
+ 	"net/http"
+
+	// "github.com/dkrest1/task-manager/models"
+)
+
+
+type UserController struct{}
+
+func NewUserController () *UserController {
+	return &UserController{}
+}
+
+func(c *UserController) CreateUser(w http.ResponseWriter, r *http.Request) {
+	// task := models.Task{}
+	
+}
+
+func(c *UserController) GetUsers(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func GetUsers(w http.ResponseWriter, r *http.Request) {
+func(c *UserController) FindUser(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func FindUser(w http.ResponseWriter, r *http.Request) {
+func(c *UserController) UpdateUser(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func UpdateUser(w http.ResponseWriter, r *http.Request) {
+func(c *UserController) DeleteUser(w http.ResponseWriter, r *http.Request) {
 
 }
-
-func DeleteUser(w http.ResponseWriter, r *http.Request) {
-
-}
-
-
 

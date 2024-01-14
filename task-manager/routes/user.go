@@ -1,21 +1,22 @@
 package routes
 
 import (
+	"net/http"
+
 	"github.com/dkrest1/task-manager/controllers"
 	"github.com/gorilla/mux"
 )
 
-var UserRoute *mux.Router
 
-func userRouter( ) {
+func UserRoute(userController *controllers.UserController ) http.Handler {
 
-	route := mux.NewRouter()
+	router := mux.NewRouter()
 
-	route.HandleFunc("/", controllers.CreateUser).Methods("POST")
-	route.HandleFunc("", controllers.GetUsers).Methods("GET")
-	route.HandleFunc("", controllers.FindUser).Methods("GET")
-	route.HandleFunc("", controllers.UpdateUser).Methods("PATCH")
-	route.HandleFunc("", controllers.DeleteUser).Methods("DELETE")
+	router.HandleFunc("/", userController.CreateUser).Methods("POST")
+	router.HandleFunc("/", userController.GetUsers).Methods("GET")
+	router.HandleFunc("/{id}", userController.FindUser).Methods("GET")
+	router.HandleFunc("/{id}", userController.UpdateUser).Methods("PATCH")
+	router.HandleFunc("/{id}", userController.DeleteUser).Methods("DELETE")
 
-	UserRoute = route 
+	return router
 }

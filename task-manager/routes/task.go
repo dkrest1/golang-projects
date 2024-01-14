@@ -1,21 +1,22 @@
 package routes
 
 import (
+	"net/http"
+
 	"github.com/dkrest1/task-manager/controllers"
 	"github.com/gorilla/mux"
 )
 
-var TaskRoute *mux.Router
 
-func taskRouter() {
+func TaskRoute(taskController *controllers.TaskController ) http.Handler {
 
-	route := mux.NewRouter()
+	router := mux.NewRouter()
 
-	route.HandleFunc("/", controllers.CreateTask).Methods("POST")
-	route.HandleFunc("", controllers.GetTasks).Methods("GET")
-	route.HandleFunc("", controllers.FindTask).Methods("GET")
-	route.HandleFunc("", controllers.UpdateTask).Methods("PATCH")
-	route.HandleFunc("", controllers.DeleteTask).Methods("DELETE")
+	router.HandleFunc("/", taskController.CreateTask).Methods("POST")
+	router.HandleFunc("/", taskController.GetTasks).Methods("GET")
+	router.HandleFunc("/{id}", taskController.FindTask).Methods("GET")
+	router.HandleFunc("/{id}", taskController.UpdateTask).Methods("PATCH")
+	router.HandleFunc("/{id}", taskController.DeleteTask).Methods("DELETE")
 
-	TaskRoute = route 
+	return router
 }

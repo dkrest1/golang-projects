@@ -1,12 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/dkrest1/task-manager/configs"
-	// "github.com/dkrest1/task-manager/routes"
+	"github.com/dkrest1/task-manager/routes"
 	"github.com/joho/godotenv"
 )
 
@@ -20,6 +21,7 @@ func main() {
 	// init DB
 	configs.InitDB()
 
+	appRoutes := routes.Routes()
 
 	port, exist := os.LookupEnv("PORT")
 
@@ -27,10 +29,15 @@ func main() {
 		log.Fatal("PORT not set in env")
 	}
 
-	err := http.ListenAndServe(":"+port, nil)
+	http.Handle("/", appRoutes)
+
+	fmt.Printf("Server is live and running on port %v 🚀🚀🚀", port)
+
+	err := http.ListenAndServe(fmt.Sprintf(":%s", port), nil)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
 }
+

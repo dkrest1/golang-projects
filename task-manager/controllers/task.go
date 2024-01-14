@@ -1,23 +1,35 @@
 package controllers
 
-import "net/http"
+import (
+	"net/http"
 
-func CreateTask(w http.ResponseWriter, r *http.Request) {
+	// "github.com/dkrest1/task-manager/models"
+)
+
+
+type TaskController struct{}
+
+func NewTaskController () *TaskController {
+	return &TaskController{}
+}
+
+func(c *TaskController) CreateTask(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func GetTasks(w http.ResponseWriter, r *http.Request) {
+func(c *TaskController) GetTasks(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func FindTask(w http.ResponseWriter, r *http.Request) {
+func(c *TaskController) FindTask(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func UpdateTask(w http.ResponseWriter, r *http.Request) {
+func(c *TaskController) UpdateTask(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func DeleteTask(w http.ResponseWriter, r *http.Request) {
+func(c *TaskController) DeleteTask(w http.ResponseWriter, r *http.Request) {
 
 }
+
